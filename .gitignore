@@ -27,3 +27,6 @@ logs/
 crash-reports/
 debug.log
 latest.log
+
+# Local docs
+BUILD.md
