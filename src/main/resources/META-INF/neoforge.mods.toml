@@ -1,0 +1,24 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="crimsongold_mod"
+version="${file.jarVersion}"
+displayName="CrimsonGold Mod"
+description='''A companion mod with the famous Mr. Fuchsky and Count Duckula.'''
+authors="You"
+
+[[dependencies.crimsongold_mod]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.crimsongold_mod]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"

@@ -1,0 +1,29 @@
+# Gradle files
+.gradle/
+build/
+out/
+gradle/
+
+# IDE files
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+bin/
+
+# Java
+*.class
+*.log
+*.ctxt
+.DS_Store
+
+# Modding specific
+run/
+logs/
+crash-reports/
+debug.log
+latest.log
