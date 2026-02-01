@@ -1,6 +1,19 @@
 # CrimsonGold Mod
 
+**Version:** 1.21.1  
+**Loader:** NeoForge (21.1+)
+
 A companion mod with the famous Mr. Fuchsky and Count Duckula.
+
+## Screenshots
+
+### Count Duckula
+
+![Count Duckula](assets/pix/Count_Duckula.png)
+
+### Mr. Fuchsky
+
+![Mr. Fuchsky](assets/pix/Mr_Fuchsky.png)
 
 ## Creatures
 
@@ -31,5 +44,5 @@ If you need to part ways, do not kill them. Instead, give them a **Golden Carrot
 To build the project, run:
 
 ```bash
-/home/clyde/.gradle/wrapper/dists/gradle-9.2.0-bin/11i5gvueggl8a5cioxuftxrik/gradle-9.2.0/bin/gradle clean build
+gradle clean build
 ```
