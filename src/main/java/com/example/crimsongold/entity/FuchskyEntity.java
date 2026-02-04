@@ -125,7 +125,7 @@ public class FuchskyEntity extends TamableAnimal {
                 if (!this.isTame()) {
                     // Tame Logic
                     this.feedingCount++;
-                    if (this.feedingCount >= 1) {
+                    if (this.feedingCount >= 3) {
                         this.tame(player);
                         this.navigation.stop();
                         this.setTarget(null);
@@ -143,16 +143,16 @@ public class FuchskyEntity extends TamableAnimal {
             return InteractionResult.sidedSuccess(this.level().isClientSide);
         }
 
+        if (this.isTame() && this.isOwnedBy(player) && !this.level().isClientSide && !itemstack.is(Items.GOLDEN_CARROT)
+                && !itemstack.is(Items.COOKIE)) {
+            this.setOrderedToSit(!this.isOrderedToSit());
+            return InteractionResult.SUCCESS;
+        }
+
         // Standard interaction (sit)
         InteractionResult result = super.mobInteract(player, hand);
         if (result.consumesAction()) {
             return result;
-        }
-
-        if (this.isTame() && this.isOwnedBy(player) && !this.level().isClientSide && !itemstack.is(Items.GOLDEN_CARROT)
-                && !itemstack.is(Items.SWEET_BERRIES)) {
-            this.setOrderedToSit(!this.isOrderedToSit());
-            return InteractionResult.SUCCESS;
         }
 
         return result;

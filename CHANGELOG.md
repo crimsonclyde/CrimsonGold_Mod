@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.0.2
+
+### Improvements
+
+- **Fuchsky Taming**:
+  - Increased taming requirement to **3 Cookies** to match Count Duckula's difficulty.
+  - Added visual feedback: Smoke particles for the first 2 cookies, Heart particles on the 3rd (Success).
+- **Interaction Logic**:
+  - **Sitting Parity**: Fixed an issue where Fuchsky would only sit if interacting with specific items. Now, both entities reliably toggle Sit/Stand when right-clicked with an Empty Hand or non-food item.
+  - **Consistency**: Explicitly excluded Golden Carrots (Vanish item) and Taming Food from triggering the "Sit" command for both entities.
+
 ## v1.0.1
 
 ### New Features

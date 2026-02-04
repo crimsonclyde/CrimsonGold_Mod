@@ -143,7 +143,8 @@ public class CountDuckulaEntity extends TamableAnimal {
         }
 
         // Sit/Stand Logic (Custom to ensure reliable toggling)
-        if (this.isTame() && this.isOwnedBy(player) && !this.isFood(itemstack) && !itemstack.is(Items.PUMPKIN_PIE)) {
+        if (this.isTame() && this.isOwnedBy(player) && !this.isFood(itemstack) && !itemstack.is(Items.PUMPKIN_PIE)
+                && !itemstack.is(Items.GOLDEN_CARROT)) {
             if (!this.level().isClientSide) {
                 this.setOrderedToSit(!this.isOrderedToSit());
                 this.jumping = false;
