@@ -102,8 +102,8 @@ public class FuchskyEntity extends TamableAnimal {
                         this.getX(), this.getY() + 0.5D, this.getZ(), 20, 0.5D, 0.5D, 0.5D, 0.1D);
 
                 // Message
-                player.sendSystemMessage(net.minecraft.network.chat.Component
-                        .literal("Il fino seniore Fuchsky gone for good.... but will return soon"));
+                player.sendSystemMessage(
+                        com.example.crimsongold.util.ModUtils.getRandomVanishMessage(this, this.getRandom()));
 
                 // Despawn
                 this.discard();
@@ -111,46 +111,36 @@ public class FuchskyEntity extends TamableAnimal {
             return InteractionResult.SUCCESS;
         }
 
-        // Taming Logic (Feed Pumpkin Pie as well? Or something else? User said "gives
-        // the same buff as Count Duckula" and implies similar interaction.
-        // User didn't specify food for Fuchsky, so I'll assume Sweet Berries (Fox food)
-        // or Pumpkin Pie?
-        // "I giving a golden carrot ... like with the pie". implies Pie is standard.
-        // Actually, user said "like with the pie" referring to the Duck logic.
-        // I'll make it Tameable with Sweet Berries (Thematic for Fox) or Pumpkin Pie
-        // (Thematic for Mod).
-        // Let's go with Pumpkin Pie for consistency with the Duck, or ask?
-        // User said: "base is standard fox... behave like a wolve... gives same buff as
-        // Count Duckula".
-        // I will use Sweet Berries as it is a Fox, but apply the same interactions. Or
-        // stick to Pie to match the "Mod" theme.
-        // I'll use Sweet Berries for taming to differentiate, or Pie. Let's use Sweet
-        // Berries.
-        // Wait, "gives the same buff" implies the *reward* is the same.
-        // I will use Sweet Berries for taming (Lines up with Fox).
-
-        if (itemstack.is(Items.COOKIE) && !this.isTame()) {
+        // Feeding logic for taming (Cookie) - Always return SUCCESS to prevent player
+        // eating it
+        if (itemstack.is(Items.COOKIE)) {
             if (!this.level().isClientSide) {
+                // Consume item (unless creative)
                 if (!player.getAbilities().instabuild) {
                     itemstack.shrink(1);
                 }
 
-                this.feedingCount++;
                 this.playSound(SoundEvents.FOX_EAT, 1.0F, 1.0F);
 
-                if (this.feedingCount >= 3) {
-                    this.tame(player);
-                    this.navigation.stop();
-                    this.setTarget(null);
-                    this.level().broadcastEntityEvent(this, (byte) 7); // Heart particles
-                    // Speed Buff
-                    player.addEffect(new net.minecraft.world.effect.MobEffectInstance(
-                            net.minecraft.world.effect.MobEffects.MOVEMENT_SPEED, 3600, 1));
+                if (!this.isTame()) {
+                    // Tame Logic
+                    this.feedingCount++;
+                    if (this.feedingCount >= 1) {
+                        this.tame(player);
+                        this.navigation.stop();
+                        this.setTarget(null);
+                        this.level().broadcastEntityEvent(this, (byte) 7); // Heart particles
+                        player.addEffect(new net.minecraft.world.effect.MobEffectInstance(
+                                net.minecraft.world.effect.MobEffects.MOVEMENT_SPEED, 3600, 1));
+                    } else {
+                        this.level().broadcastEntityEvent(this, (byte) 6); // Smoke particles
+                    }
                 } else {
-                    this.level().broadcastEntityEvent(this, (byte) 6); // Smoke particles
+                    // Already Tamed - Just Heal/Feedback
+                    this.level().broadcastEntityEvent(this, (byte) 7); // Hearts
                 }
             }
-            return InteractionResult.SUCCESS;
+            return InteractionResult.sidedSuccess(this.level().isClientSide);
         }
 
         // Standard interaction (sit)
@@ -171,6 +161,18 @@ public class FuchskyEntity extends TamableAnimal {
     @Override
     public boolean isFood(ItemStack stack) {
         return false;
+    }
+
+    @Override
+    public void addAdditionalSaveData(net.minecraft.nbt.CompoundTag compound) {
+        super.addAdditionalSaveData(compound);
+        compound.putInt("FeedingCount", this.feedingCount);
+    }
+
+    @Override
+    public void readAdditionalSaveData(net.minecraft.nbt.CompoundTag compound) {
+        super.readAdditionalSaveData(compound);
+        this.feedingCount = compound.getInt("FeedingCount");
     }
 
     @Override

@@ -104,21 +104,18 @@ public class CountDuckulaEntity extends TamableAnimal {
                 if (!player.getAbilities().instabuild) {
                     itemstack.shrink(1);
                 }
-
                 // Effects
                 this.level().playSound(null, this.getX(), this.getY(), this.getZ(), SoundEvents.ENDERMAN_TELEPORT,
                         this.getSoundSource(), 1.0F, 1.0F);
                 ((ServerLevel) this.level()).sendParticles(net.minecraft.core.particles.ParticleTypes.PORTAL,
                         this.getX(), this.getY() + 0.5D, this.getZ(), 20, 0.5D, 0.5D, 0.5D, 0.1D);
-
                 // Message
                 player.sendSystemMessage(
-                        net.minecraft.network.chat.Component.literal("Count Duckula has left the building...."));
-
+                        com.example.crimsongold.util.ModUtils.getRandomVanishMessage(this, this.getRandom()));
                 // Despawn
                 this.discard();
             }
-            return InteractionResult.SUCCESS;
+            return InteractionResult.sidedSuccess(this.level().isClientSide);
         }
 
         // Feeding logic for taming
@@ -142,22 +139,21 @@ public class CountDuckulaEntity extends TamableAnimal {
                     this.level().broadcastEntityEvent(this, (byte) 6); // Smoke particles
                 }
             }
-            return InteractionResult.SUCCESS;
+            return InteractionResult.sidedSuccess(this.level().isClientSide);
         }
 
-        // Standard interaction (e.g. sit)
-        InteractionResult result = super.mobInteract(player, hand);
-        if (result.consumesAction()) {
-            return result;
+        // Sit/Stand Logic (Custom to ensure reliable toggling)
+        if (this.isTame() && this.isOwnedBy(player) && !this.isFood(itemstack) && !itemstack.is(Items.PUMPKIN_PIE)) {
+            if (!this.level().isClientSide) {
+                this.setOrderedToSit(!this.isOrderedToSit());
+                this.jumping = false;
+                this.navigation.stop();
+                this.setTarget(null);
+            }
+            return InteractionResult.sidedSuccess(this.level().isClientSide);
         }
 
-        // Toggle sitting if tamed and owned by player
-        if (this.isTame() && this.isOwnedBy(player) && !this.level().isClientSide && !itemstack.is(Items.PUMPKIN_PIE)) {
-            this.setOrderedToSit(!this.isOrderedToSit());
-            return InteractionResult.SUCCESS;
-        }
-
-        return result;
+        return super.mobInteract(player, hand);
     }
 
     @Override

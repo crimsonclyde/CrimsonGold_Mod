@@ -115,22 +115,15 @@ public class FuchskyModel extends EntityModel<FuchskyEntity> {
                         this.body.setPos(0.0F, 21.0F, -6.0F);
 
                         this.tail.xRot = -2.6179938F; // Curl tail
-                        this.tail.zRot = 2.094395F; // Keep the side curl? User snippet didn't specify zRot for tail,
-                                                    // but usually required for curl circle.
-                        // User snippet: tail.xRot = -2.6179938F;
-                        // It does NOT mention tail.zRot.
-                        // However, standard fox sleep curls around.
-                        // I will keep my zRot for now, or check if I should remove it.
-                        // User said "tail lies in front of the body like the tail is tailed in".
-                        // Without zRot, xRot just bends it down/up.
-                        // I'll keep the zRot = 2.09 (120 deg) to wrap it.
+                        this.tail.zRot = 2.094395F;
+
                         this.tail.y = 21.0F;
-                        this.tail.z = 2.0F;
+                        this.tail.z = 8.0F; // Moved out to avoid clipping (was 2.0F)
 
                         this.head.xRot = 0.0F;
                         this.head.yRot = -2.094395F;
                         this.head.y = 21.0F;
-                        this.head.z = -1.0F; // Adjusted from 1.0F (Vanilla) to -1.0F to fix "Cramped" look
+                        this.head.z = -7.0F; // Moved out to avoid clipping (was -1.0F)
 
                         // Hide legs
                         this.leg0.visible = false;

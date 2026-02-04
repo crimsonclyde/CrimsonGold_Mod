@@ -8,6 +8,7 @@ version="${file.jarVersion}"
 displayName="CrimsonGold Mod"
 description='''A companion mod with the famous Mr. Fuchsky and Count Duckula.'''
 authors="You"
+logoFile="pack.png"
 
 [[dependencies.crimsongold_mod]]
 modId="neoforge"
