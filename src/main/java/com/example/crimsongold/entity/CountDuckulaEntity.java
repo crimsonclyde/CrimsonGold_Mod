@@ -211,4 +211,19 @@ public class CountDuckulaEntity extends TamableAnimal {
     public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob otherParent) {
         return null; // Not currently breedable
     }
+
+    @Override
+    protected net.minecraft.sounds.SoundEvent getAmbientSound() {
+        return com.example.crimsongold.registry.ModSounds.ENTITY_COUNT_DUCKULA_AMBIENT.get();
+    }
+
+    @Override
+    protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource damageSource) {
+        return com.example.crimsongold.registry.ModSounds.ENTITY_COUNT_DUCKULA_HURT.get();
+    }
+
+    @Override
+    protected net.minecraft.sounds.SoundEvent getDeathSound() {
+        return com.example.crimsongold.registry.ModSounds.ENTITY_COUNT_DUCKULA_DEATH.get();
+    }
 }

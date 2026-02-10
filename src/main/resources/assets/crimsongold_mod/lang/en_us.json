@@ -2,6 +2,9 @@
   "item.crimsongold_mod.count_duckula_spawn_egg": "Count Duckula Spawn Egg",
   "item.crimsongold_mod.fuchsky_spawn_egg": "Il fino seniore Fuchsky Spawn Egg",
   "entity.crimsongold_mod.count_duckula": "Count Duckula",
-  "entity.crimsongold_mod.fuchsky": "Il fino seniore Fuchsky",
+  "entity.crimsongold_mod.fuchsky": "Mr. Fuchsky",
+  "subtitles.entity.count_duckula.ambient": "Count Duckula murmurs",
+  "subtitles.entity.count_duckula.hurt": "Count Duckula hurts",
+  "subtitles.entity.count_duckula.death": "Count Duckula dies",
   "creativetab.crimsongold_mod_tab": "CrimsonGold Mod"
 }

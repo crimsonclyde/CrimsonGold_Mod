@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.0.3
+
+### New Features
+
+- **Audio Implementation**:
+  - Added custom sound effects for **Count Duckula**.
+    - Includes ambient quacks, hurt sounds, and death sounds.
+  - Registered sounds in `ModSounds` registry.
+
+- **World Generation**:
+  - **Count Duckula**: Now spawns in **Deep Dark** and **Dark Forest** biomes.
+  - Implemented via NeoForge biome modifiers for better compatibility.
+
 ## v1.0.2
 
 ### Improvements

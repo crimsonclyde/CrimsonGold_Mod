@@ -15,5 +15,6 @@ public class CrimsonGoldMod {
         ModItems.register(modEventBus);
         ModCreativeTabs.register(modEventBus);
         ModEventHandlers.register(modEventBus);
+        com.example.crimsongold.registry.ModSounds.register(modEventBus);
     }
 }

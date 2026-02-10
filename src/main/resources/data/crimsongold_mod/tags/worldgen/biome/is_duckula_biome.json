@@ -1,0 +1,14 @@
+{
+  "values": [
+    "minecraft:deep_dark",
+    "minecraft:dark_forest",
+    {
+      "id": "biomesoplenty:ominous_woods",
+      "required": false
+    },
+    {
+      "id": "biomesoplenty:magic_forest",
+      "required": false
+    }
+  ]
+}

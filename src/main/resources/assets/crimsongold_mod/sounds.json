@@ -1,0 +1,20 @@
+{
+  "entity.count_duckula.ambient": {
+    "subtitle": "subtitles.entity.count_duckula.ambient",
+    "sounds": [
+      "crimsongold_mod:entity/count_duckula/ambient"
+    ]
+  },
+  "entity.count_duckula.hurt": {
+    "subtitle": "subtitles.entity.count_duckula.hurt",
+    "sounds": [
+      "crimsongold_mod:entity/count_duckula/hurt"
+    ]
+  },
+  "entity.count_duckula.death": {
+    "subtitle": "subtitles.entity.count_duckula.death",
+    "sounds": [
+      "crimsongold_mod:entity/count_duckula/death"
+    ]
+  }
+}
